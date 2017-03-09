@@ -8,7 +8,7 @@ namespace oahu_api.Models
 
         IEnumerable<Event> GetAllFromDevice(long key);
 
-        public Event GetLatestEventFromDevice(long id);
+        Event GetLatestEventFromDevice(long id);
 
         Event Find(long key);
 
