@@ -62,6 +62,56 @@ namespace oahu_api.Controllers
         }
 
         /// <summary>
+        /// This endpoint returns all the events for a given sensor 
+        /// </summary>
+        /// <remarks>
+        /// Get all events for a sensor
+        /// </remarks>
+        /// <param name="id">The id of the device.</param>
+        /// <param name="sensor">The name of the sensor.</param>
+        /// <returns>All events from the sensor</returns>
+        [HttpGet("{id}/{sensor}/events")]
+        [Produces(typeof(IEnumerable<Event>))]
+        [SwaggerResponse(200, Type = typeof(IEnumerable<Event>))]
+        public IEnumerable<Event> SensorEvents(long id, string sensor)
+        {
+            return _eventRepository.GetAllFromSensor(id, sensor);
+        }
+
+        /// <summary>
+        /// This endpoint returns the most recent event for a given device 
+        /// </summary>
+        /// <remarks>
+        /// Get the latest event for a device
+        /// </remarks>
+        /// <param name="id">The id of the device.</param>
+        /// <returns>The latest event from the device</returns>
+        [HttpGet("{id}/events/latest")]
+        [Produces(typeof(Event))]
+        [SwaggerResponse(200, Type = typeof(Event))]
+        public Event MostRecentEventFromDevice(long id)
+        {
+            return _eventRepository.GetLatestEventFromDevice(id);
+        }
+
+        /// <summary>
+        /// This endpoint returns the most recent event for a given sensor 
+        /// </summary>
+        /// <remarks>
+        /// Get the latest event for a sensor
+        /// </remarks>
+        /// <param name="id">The id of the device.</param>
+        /// <param name="sensor">The id of the sensor.</param>
+        /// <returns>The latest event from the sensor</returns>
+        [HttpGet("{id}/{sensor}/events/latest")]
+        [Produces(typeof(Event))]
+        [SwaggerResponse(200, Type = typeof(Event))]
+        public Event MostRecentEventFromDevice(long id, string sensor)
+        {
+            return _eventRepository.GetLatestEventFromSensor(id, sensor);
+        }
+
+        /// <summary>
         /// This endpoint returns a single device with the given id.
         /// </summary>
         /// <remarks>
