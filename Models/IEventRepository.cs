@@ -8,6 +8,10 @@ namespace oahu_api.Models
 
         IEnumerable<Event> GetAllFromDevice(long key);
 
+        IEnumerable<Event> GetAllFromSensor(long key, string sensor);
+
+        Event GetLatestEventFromSensor(long id, string sensor);
+
         Event GetLatestEventFromDevice(long id);
 
         Event Find(long key);

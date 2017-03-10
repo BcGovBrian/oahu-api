@@ -18,6 +18,16 @@ namespace oahu_api.Models
             return _context.Events.Where(e => e.device_id == id).ToList();
         }
 
+        public IEnumerable<Event> GetAllFromSensor(long id, string sensor)
+        {
+            return _context.Events.Where(e => e.device_id == id && e.sensor == sensor).ToList();
+        }
+
+        public Event GetLatestEventFromSensor(long id, string sensor)
+        {
+            return _context.Events.Where(e => e.device_id == id && e.sensor == sensor).Last();
+        }
+
         public Event GetLatestEventFromDevice(long id)
         {
             return _context.Events.Where(e => e.device_id == id).Last();
